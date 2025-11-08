@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 
 const App = () => {
 
@@ -6,7 +7,24 @@ const App = () => {
 	const [content, setContent] = useState('')
 	const [task, setTask] = useState([])
 
-  const submitHandler = (e)=>{
+	const LOCALSTORAGE_KEY = 'my-notes'
+    useEffect(() => {
+    const raw = localStorage.getItem(LOCALSTORAGE_KEY);
+			if (raw) {
+			try {
+					setTask(JSON.parse(raw));
+			} catch (err) {
+					console.error('Failed to parse notes from localStorage', err);
+			}
+			}
+    }, []);
+
+    useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(task));
+    }, [task]);
+
+
+    const submitHandler = (e)=>{
 		e.preventDefault();
 
 		const copyTask=[...task];

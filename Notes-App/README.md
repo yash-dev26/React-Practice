@@ -31,4 +31,9 @@ A simple **Notes App** built with React to practice and showcase my understandin
 
 ---
 
-## Live Link
+## Preview
+![alt text](image.png)
+
+**Smaller screen :-**
+
+![alt text](image-1.png)
